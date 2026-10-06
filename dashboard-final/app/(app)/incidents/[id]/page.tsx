@@ -31,6 +31,7 @@ const EVENT_LABEL: Record<string, string> = {
   "participant.status": "Resident status",
   "sos.created": "SOS",
   "sos.resolved": "SOS resolved",
+  "sim.summary": "Simulation progress",
 };
 
 function toFrames(items: EventLogItem[], start: number): Frame[] {

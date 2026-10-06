@@ -48,7 +48,8 @@ describe("snapshot validation", () => {
     expect(SnapshotSchema.safeParse(base).success).toBe(true);
   });
   it("rejects partial payloads instead of crashing the view", () => {
-    const { kpis: _k, ...partial } = base;
+    const partial: Record<string, unknown> = { ...base };
+    delete partial.kpis;
     expect(SnapshotSchema.safeParse(partial).success).toBe(false);
     expect(SnapshotSchema.safeParse({ ...base, hazards: { "5": "lava" } }).success).toBe(false);
   });

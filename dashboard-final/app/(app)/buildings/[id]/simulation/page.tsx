@@ -55,6 +55,8 @@ export default function SimulationPage() {
   const [benchJob, setBenchJob] = useState<string | null>(null);
   const [bench, setBench] = useState<BenchResult | null>(null);
   const isAdmin = me?.user.role === "society_admin";
+  // benchmark the crowd that is actually in the building when a simulation is running
+  const benchOccupants = snapshot?.sim?.summary.occupants || occupants;
 
   const nodeFloor = useMemo(() => new Map((graph?.nodes ?? []).map((n) => [n.id, n.floor_id])), [graph]);
   const floorId = chosenFloor ?? (graph ? [...graph.floors].sort((a, b) => a.level - b.level)[0]?.id ?? null : null);
@@ -72,7 +74,7 @@ export default function SimulationPage() {
     mutationFn: () =>
       api.post<{ job_id: string }>(`/buildings/${id}/benchmark`, {
         seeds: 5,
-        occupants,
+        occupants: benchOccupants,
         spread_per_min: spread,
         fire_node_ids: Object.entries(snapshot?.hazards ?? {}).filter(([, l]) => l === "fire").map(([n]) => Number(n)),
       }),
@@ -245,7 +247,7 @@ export default function SimulationPage() {
               <BarChart3 className="size-4" /> Static plan vs proposed system (paper Table I)
             </CardTitle>
             <CardDescription>
-              Runs 5 seeded scenarios twice - nearest-exit static plan vs dynamic A* - with {occupants} people, fire at the currently burning rooms (or a central room).
+              Runs 5 seeded scenarios twice - nearest-exit static plan vs dynamic A* - with {benchOccupants} people, fire at the currently burning rooms (or a central room).
             </CardDescription>
           </div>
           <Button onClick={() => runBench.mutate()} disabled={!!benchJob || runBench.isPending}>
@@ -274,14 +276,14 @@ export default function SimulationPage() {
                   <TD>Evacuation time reduction</TD>
                   <TD>–</TD>
                   <TD>
-                    <Badge variant="safe">{bench.evac_time_reduction_pct ?? "–"}%</Badge>
+                    <Badge variant={(bench.evac_time_reduction_pct ?? 0) > 0 ? "safe" : "muted"}>{bench.evac_time_reduction_pct ?? "–"}%</Badge>
                   </TD>
                 </TR>
                 <TR>
                   <TD>Exit queue reduction</TD>
                   <TD>–</TD>
                   <TD>
-                    <Badge variant="safe">{bench.exit_queue_reduction_pct ?? "–"}%</Badge>
+                    <Badge variant={(bench.exit_queue_reduction_pct ?? 0) > 0 ? "safe" : "muted"}>{bench.exit_queue_reduction_pct ?? "–"}%</Badge>
                   </TD>
                 </TR>
                 <TR>

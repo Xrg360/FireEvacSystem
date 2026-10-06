@@ -225,8 +225,27 @@ class _EvacuateScreenState extends ConsumerState<EvacuateScreen> {
                 flex: 5,
                 child: g == null
                     ? const Center(child: CircularProgressIndicator())
-                    : Stack(children: [
-                        Positioned.fill(
+                    : Column(children: [
+                        // floor switcher in its own row so it never covers the map
+                        SizedBox(
+                          height: 44,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                            children: [
+                              for (final f in [...g.floors]..sort((a, b) => b.level.compareTo(a.level)))
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 6),
+                                  child: ChoiceChip(
+                                    label: Text(f.level == myLevel ? '${f.name} •' : f.name, style: const TextStyle(fontSize: 12)),
+                                    selected: f.level == level,
+                                    onSelected: (_) => setState(() => _viewLevel = f.level == myLevel ? null : f.level),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
                           child: FloorMap(
                             graph: g,
                             level: level,
@@ -235,21 +254,6 @@ class _EvacuateScreenState extends ConsumerState<EvacuateScreen> {
                             me: s.fix?.x != null && s.fix?.level == level ? Offset(s.fix!.x!, s.fix!.y!) : null,
                             meSpreadM: s.fix?.spreadM,
                           ),
-                        ),
-                        Positioned(
-                          right: 8,
-                          top: 8,
-                          child: Column(children: [
-                            for (final f in [...g.floors]..sort((a, b) => b.level.compareTo(a.level)))
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 4),
-                                child: ChoiceChip(
-                                  label: Text(f.level == myLevel ? '${f.name} •' : f.name, style: const TextStyle(fontSize: 11)),
-                                  selected: f.level == level,
-                                  onSelected: (_) => setState(() => _viewLevel = f.level == myLevel ? null : f.level),
-                                ),
-                              ),
-                          ]),
                         ),
                       ]),
               ),

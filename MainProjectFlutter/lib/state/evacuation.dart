@@ -135,11 +135,12 @@ class EvacuationController extends Notifier<EvacState> {
   @override
   EvacState build() {
     ref.onDispose(_teardown);
-    final session = ref.watch(sessionProvider);
-    if (session.status == SessionStatus.ready && session.user?.buildingId != null) {
-      Future.microtask(() => _start(session.user!.buildingId!));
+    // rebuild only when what the controller depends on changes (not on every profile refresh)
+    final (status, buildingId, mode) = ref.watch(sessionProvider.select((s) => (s.status, s.user?.buildingId, s.buildingMode)));
+    if (status == SessionStatus.ready && buildingId != null) {
+      Future.microtask(() => _start(buildingId));
     }
-    return EvacState(buildingMode: session.buildingMode ?? 'live');
+    return EvacState(buildingMode: mode ?? 'live');
   }
 
   // ------------------------------------------------------------------ lifecycle
@@ -169,7 +170,10 @@ class EvacuationController extends Notifier<EvacState> {
     _watchdog?.cancel();
     _scanner?.stop();
     _gpsSub?.cancel();
+    _gpsSub = null;
     _socket?.dispose();
+    _socket = null;
+    _disconnectedAt = null;
   }
 
   Future<void> _loadGraph(int buildingId, int version) async {

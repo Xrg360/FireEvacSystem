@@ -36,6 +36,9 @@ class SocketService {
       serverUrl,
       io.OptionBuilder()
           .setTransports(['websocket'])
+          // socket_io_client caches one Manager per URL; after a dispose (re-login, rebuild)
+          // the cached one is dead, so always build a fresh connection.
+          .enableForceNew()
           .setAuth({'token': token})
           .enableReconnection()
           .setReconnectionDelay(1000)
