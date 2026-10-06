@@ -124,7 +124,12 @@ class DeviceLocator:
         else:
             source, x, y, level, node_id, confidence, floor_confidence, spread = "unknown", None, None, None, None, 0.0, 0.0, None
 
-        if outside and source != "manual":
+        if source == "manual":
+            # the person just told us where they are inside the building; a GPS fix that says
+            # "outside" (often stale or far off indoors) must not stop their routing
+            outside = False
+            near_assembly = None
+        elif outside:
             source = "gps"
 
         needs_picker = source in {"unknown", "last_known"} or (source == "wifi_pf" and confidence < low_conf)

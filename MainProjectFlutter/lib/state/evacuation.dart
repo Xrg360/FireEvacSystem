@@ -124,6 +124,7 @@ class EvacuationController extends Notifier<EvacState> {
   SocketService? _socket;
   ScanService? _scanner;
   StreamSubscription<Position>? _gpsSub;
+  DateTime? _gpsRetryAfter;
   final List<StreamSubscription<dynamic>> _subs = [];
   Timer? _watchdog;
   DateTime? _disconnectedAt;
@@ -303,14 +304,28 @@ class EvacuationController extends Notifier<EvacState> {
       return;
     }
     if (_gpsSub != null) return;
+    if (_gpsRetryAfter != null && DateTime.now().isBefore(_gpsRetryAfter!)) return;
     _gpsSub = Geolocator.getPositionStream(
-      locationSettings: AndroidSettings(accuracy: LocationAccuracy.high, distanceFilter: 3, intervalDuration: const Duration(seconds: 5)),
+      // Plain LocationManager: never pops Google's "Location Accuracy" dialog over the
+      // evacuation screen, and works without Play Services.
+      locationSettings: AndroidSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 3,
+        intervalDuration: const Duration(seconds: 5),
+        forceLocationManager: true,
+      ),
     ).listen(
       (p) {
         state = state.copyWith(gps: p);
         _socket?.call('gps', {'lat': p.latitude, 'lng': p.longitude, 'accuracy_m': p.accuracy});
       },
-      onError: (_) {},
+      onError: (_) {
+        // GPS unavailable (off / denied): back off instead of retrying every tick
+        _gpsSub?.cancel();
+        _gpsSub = null;
+        _gpsRetryAfter = DateTime.now().add(const Duration(seconds: 60));
+      },
+      cancelOnError: true,
     );
   }
 

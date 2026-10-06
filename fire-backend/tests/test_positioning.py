@@ -101,3 +101,17 @@ def test_gps_outside_footprint(villa):
     centre = [sum(p[0] for p in fp_poly) / 4, sum(p[1] for p in fp_poly) / 4]
     assert point_in_polygon(centre[0], centre[1], fp_poly)
     assert haversine_m(0, 0, 0, 0.001) == pytest.approx(111.2, abs=0.5)
+
+
+def test_manual_pick_overrides_gps_outside(villa):
+    import json
+    from pathlib import Path
+
+    data = json.loads((Path(__file__).resolve().parent.parent / "contracts/fixtures/block_a_villa.json").read_text())
+    loc = new_locator("mg", PFMap(villa), 200, seed=7)
+    loc.on_gps(37.42, -122.08, 5.0, 10.0)  # far away (e.g. emulator default / stale fix)
+    assert loc.fix(11.0, data["building"]["footprint"], {})["outside"] is True
+    node = villa.node_by_key("A-BEDROOM").id
+    loc.on_manual(node, 12.0)
+    fix = loc.fix(13.0, data["building"]["footprint"], {})
+    assert fix["source"] == "manual" and fix["outside"] is False and fix["node_id"] == node

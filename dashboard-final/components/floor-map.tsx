@@ -223,7 +223,7 @@ export function FloorMap({
             {showLabels && n.type !== "corridor" && (
               <text
                 x={n.x}
-                y={n.type === "stair" || n.type === "lift" ? n.y - r - 0.5 : n.y + r + 1.0}
+                y={n.type === "stair" || n.type === "refuge" ? n.y - r - 0.5 : n.y + r + 1.0}
                 fontSize={0.75}
                 textAnchor="middle"
                 fill="var(--foreground)"

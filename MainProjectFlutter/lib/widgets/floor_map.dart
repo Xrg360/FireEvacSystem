@@ -170,7 +170,9 @@ class _MapPainter extends CustomPainter {
           maxLines: 1,
           ellipsis: '…',
         )..layout(maxWidth: 110);
-        tp.paint(canvas, p + Offset(-tp.width / 2, math.max(r, 5) + 2));
+        // stairs and refuges usually sit next to a flat: label them above to avoid overlaps
+        final above = n.type == 'stair' || n.type == 'refuge';
+        tp.paint(canvas, p + Offset(-tp.width / 2, above ? -(math.max(r, 5) + 2 + tp.height) : math.max(r, 5) + 2));
       }
     }
 
