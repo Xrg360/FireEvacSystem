@@ -1,0 +1,1298 @@
+{
+  "building": {
+    "id": 2,
+    "name": "Block B (Tower)",
+    "floor_height_m": 3.2,
+    "graph_version": 1,
+    "footprint": [
+      [
+        9.962109,
+        76.4121557
+      ],
+      [
+        9.962109,
+        76.4124476
+      ],
+      [
+        9.9619473,
+        76.4124476
+      ],
+      [
+        9.9619473,
+        76.4121557
+      ]
+    ]
+  },
+  "floors": [
+    {
+      "id": 10,
+      "level": 0,
+      "name": "Ground Floor",
+      "width_m": 30,
+      "height_m": 16
+    },
+    {
+      "id": 11,
+      "level": 1,
+      "name": "Floor 1",
+      "width_m": 30,
+      "height_m": 16
+    },
+    {
+      "id": 12,
+      "level": 2,
+      "name": "Floor 2",
+      "width_m": 30,
+      "height_m": 16
+    },
+    {
+      "id": 13,
+      "level": 3,
+      "name": "Floor 3",
+      "width_m": 30,
+      "height_m": 16
+    }
+  ],
+  "nodes": [
+    {
+      "id": 101,
+      "key": "B0-C1",
+      "name": "Ground Floor West Corridor",
+      "type": "corridor",
+      "floor_id": 10,
+      "x": 6,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 102,
+      "key": "B0-C2",
+      "name": "Ground Floor Central Corridor",
+      "type": "corridor",
+      "floor_id": 10,
+      "x": 15,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 103,
+      "key": "B0-C3",
+      "name": "Ground Floor East Corridor",
+      "type": "corridor",
+      "floor_id": 10,
+      "x": 24,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 104,
+      "key": "B0-SW",
+      "name": "West Staircase",
+      "type": "stair",
+      "floor_id": 10,
+      "x": 2,
+      "y": 8,
+      "capacity": 12,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 105,
+      "key": "B0-SE",
+      "name": "East Staircase",
+      "type": "stair",
+      "floor_id": 10,
+      "x": 28,
+      "y": 8,
+      "capacity": 12,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 106,
+      "key": "B0-LIFT",
+      "name": "Lift Lobby",
+      "type": "lift",
+      "floor_id": 10,
+      "x": 15,
+      "y": 11,
+      "capacity": 8,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 107,
+      "key": "B0-LOBBY",
+      "name": "Lobby",
+      "type": "room",
+      "floor_id": 10,
+      "x": 15,
+      "y": 3,
+      "capacity": 20,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 108,
+      "key": "B0-CLUBHOUSE",
+      "name": "Clubhouse",
+      "type": "room",
+      "floor_id": 10,
+      "x": 24,
+      "y": 13,
+      "capacity": 20,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 109,
+      "key": "B0-SECURITYCABIN",
+      "name": "Security Cabin",
+      "type": "room",
+      "floor_id": 10,
+      "x": 6,
+      "y": 13,
+      "capacity": 3,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 110,
+      "key": "B0-EXIT-MAIN",
+      "name": "Main Entrance",
+      "type": "exit",
+      "floor_id": 10,
+      "x": 15,
+      "y": 15.5,
+      "capacity": 10,
+      "exit_flow_per_min": 60,
+      "lat": 9.9619608,
+      "lng": 76.4123016
+    },
+    {
+      "id": 111,
+      "key": "B0-EXIT-WEST",
+      "name": "West Fire Exit",
+      "type": "exit",
+      "floor_id": 10,
+      "x": 0,
+      "y": 8,
+      "capacity": 6,
+      "exit_flow_per_min": 40,
+      "lat": 9.9620281,
+      "lng": 76.4121648
+    },
+    {
+      "id": 112,
+      "key": "B0-EXIT-EAST",
+      "name": "East Fire Exit",
+      "type": "exit",
+      "floor_id": 10,
+      "x": 30,
+      "y": 8,
+      "capacity": 6,
+      "exit_flow_per_min": 40,
+      "lat": 9.9620281,
+      "lng": 76.4124384
+    },
+    {
+      "id": 113,
+      "key": "B0-ASSEMBLY",
+      "name": "Parking Assembly Point",
+      "type": "assembly",
+      "floor_id": 10,
+      "x": 15,
+      "y": 24,
+      "capacity": 300,
+      "exit_flow_per_min": null,
+      "lat": 9.9618844,
+      "lng": 76.4123016
+    },
+    {
+      "id": 114,
+      "key": "B1-C1",
+      "name": "Floor 1 West Corridor",
+      "type": "corridor",
+      "floor_id": 11,
+      "x": 6,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 115,
+      "key": "B1-C2",
+      "name": "Floor 1 Central Corridor",
+      "type": "corridor",
+      "floor_id": 11,
+      "x": 15,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 116,
+      "key": "B1-C3",
+      "name": "Floor 1 East Corridor",
+      "type": "corridor",
+      "floor_id": 11,
+      "x": 24,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 117,
+      "key": "B1-SW",
+      "name": "West Staircase",
+      "type": "stair",
+      "floor_id": 11,
+      "x": 2,
+      "y": 8,
+      "capacity": 12,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 118,
+      "key": "B1-SE",
+      "name": "East Staircase",
+      "type": "stair",
+      "floor_id": 11,
+      "x": 28,
+      "y": 8,
+      "capacity": 12,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 119,
+      "key": "B1-LIFT",
+      "name": "Lift Lobby",
+      "type": "lift",
+      "floor_id": 11,
+      "x": 15,
+      "y": 11,
+      "capacity": 8,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 120,
+      "key": "B1-F01",
+      "name": "Flat 101",
+      "type": "room",
+      "floor_id": 11,
+      "x": 6,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 121,
+      "key": "B1-F02",
+      "name": "Flat 102",
+      "type": "room",
+      "floor_id": 11,
+      "x": 15,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 122,
+      "key": "B1-F03",
+      "name": "Flat 103",
+      "type": "room",
+      "floor_id": 11,
+      "x": 24,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 123,
+      "key": "B1-F04",
+      "name": "Flat 104",
+      "type": "room",
+      "floor_id": 11,
+      "x": 6,
+      "y": 13,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 124,
+      "key": "B1-F05",
+      "name": "Flat 105",
+      "type": "room",
+      "floor_id": 11,
+      "x": 24,
+      "y": 13,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 125,
+      "key": "B1-REFUGE",
+      "name": "Floor 1 Refuge Area",
+      "type": "refuge",
+      "floor_id": 11,
+      "x": 28,
+      "y": 13,
+      "capacity": 10,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 126,
+      "key": "B2-C1",
+      "name": "Floor 2 West Corridor",
+      "type": "corridor",
+      "floor_id": 12,
+      "x": 6,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 127,
+      "key": "B2-C2",
+      "name": "Floor 2 Central Corridor",
+      "type": "corridor",
+      "floor_id": 12,
+      "x": 15,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 128,
+      "key": "B2-C3",
+      "name": "Floor 2 East Corridor",
+      "type": "corridor",
+      "floor_id": 12,
+      "x": 24,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 129,
+      "key": "B2-SW",
+      "name": "West Staircase",
+      "type": "stair",
+      "floor_id": 12,
+      "x": 2,
+      "y": 8,
+      "capacity": 12,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 130,
+      "key": "B2-SE",
+      "name": "East Staircase",
+      "type": "stair",
+      "floor_id": 12,
+      "x": 28,
+      "y": 8,
+      "capacity": 12,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 131,
+      "key": "B2-LIFT",
+      "name": "Lift Lobby",
+      "type": "lift",
+      "floor_id": 12,
+      "x": 15,
+      "y": 11,
+      "capacity": 8,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 132,
+      "key": "B2-F01",
+      "name": "Flat 201",
+      "type": "room",
+      "floor_id": 12,
+      "x": 6,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 133,
+      "key": "B2-F02",
+      "name": "Flat 202",
+      "type": "room",
+      "floor_id": 12,
+      "x": 15,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 134,
+      "key": "B2-F03",
+      "name": "Flat 203",
+      "type": "room",
+      "floor_id": 12,
+      "x": 24,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 135,
+      "key": "B2-F04",
+      "name": "Flat 204",
+      "type": "room",
+      "floor_id": 12,
+      "x": 6,
+      "y": 13,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 136,
+      "key": "B2-F05",
+      "name": "Flat 205",
+      "type": "room",
+      "floor_id": 12,
+      "x": 24,
+      "y": 13,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 137,
+      "key": "B2-REFUGE",
+      "name": "Floor 2 Refuge Area",
+      "type": "refuge",
+      "floor_id": 12,
+      "x": 28,
+      "y": 13,
+      "capacity": 10,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 138,
+      "key": "B3-C1",
+      "name": "Floor 3 West Corridor",
+      "type": "corridor",
+      "floor_id": 13,
+      "x": 6,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 139,
+      "key": "B3-C2",
+      "name": "Floor 3 Central Corridor",
+      "type": "corridor",
+      "floor_id": 13,
+      "x": 15,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 140,
+      "key": "B3-C3",
+      "name": "Floor 3 East Corridor",
+      "type": "corridor",
+      "floor_id": 13,
+      "x": 24,
+      "y": 8,
+      "capacity": 15,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 141,
+      "key": "B3-SW",
+      "name": "West Staircase",
+      "type": "stair",
+      "floor_id": 13,
+      "x": 2,
+      "y": 8,
+      "capacity": 12,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 142,
+      "key": "B3-SE",
+      "name": "East Staircase",
+      "type": "stair",
+      "floor_id": 13,
+      "x": 28,
+      "y": 8,
+      "capacity": 12,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 143,
+      "key": "B3-LIFT",
+      "name": "Lift Lobby",
+      "type": "lift",
+      "floor_id": 13,
+      "x": 15,
+      "y": 11,
+      "capacity": 8,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 144,
+      "key": "B3-F01",
+      "name": "Flat 301",
+      "type": "room",
+      "floor_id": 13,
+      "x": 6,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 145,
+      "key": "B3-F02",
+      "name": "Flat 302",
+      "type": "room",
+      "floor_id": 13,
+      "x": 15,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 146,
+      "key": "B3-F03",
+      "name": "Flat 303",
+      "type": "room",
+      "floor_id": 13,
+      "x": 24,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 147,
+      "key": "B3-F04",
+      "name": "Flat 304",
+      "type": "room",
+      "floor_id": 13,
+      "x": 6,
+      "y": 13,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 148,
+      "key": "B3-F05",
+      "name": "Flat 305",
+      "type": "room",
+      "floor_id": 13,
+      "x": 24,
+      "y": 13,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 149,
+      "key": "B3-REFUGE",
+      "name": "Floor 3 Refuge Area",
+      "type": "refuge",
+      "floor_id": 13,
+      "x": 28,
+      "y": 13,
+      "capacity": 10,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    }
+  ],
+  "edges": [
+    {
+      "id": 101,
+      "a": 101,
+      "b": 102,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 102,
+      "a": 102,
+      "b": 103,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 103,
+      "a": 101,
+      "b": 104,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 104,
+      "a": 103,
+      "b": 105,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 105,
+      "a": 102,
+      "b": 106,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 106,
+      "a": 102,
+      "b": 107,
+      "kind": "door",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 107,
+      "a": 103,
+      "b": 108,
+      "kind": "door",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 108,
+      "a": 101,
+      "b": 109,
+      "kind": "door",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 109,
+      "a": 106,
+      "b": 110,
+      "kind": "corridor",
+      "width_m": 2.5,
+      "accessible": true
+    },
+    {
+      "id": 110,
+      "a": 104,
+      "b": 111,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 111,
+      "a": 105,
+      "b": 112,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 112,
+      "a": 110,
+      "b": 113,
+      "kind": "outdoor",
+      "width_m": 4,
+      "accessible": true
+    },
+    {
+      "id": 113,
+      "a": 114,
+      "b": 115,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 114,
+      "a": 115,
+      "b": 116,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 115,
+      "a": 114,
+      "b": 117,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 116,
+      "a": 116,
+      "b": 118,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 117,
+      "a": 115,
+      "b": 119,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 118,
+      "a": 114,
+      "b": 120,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 119,
+      "a": 115,
+      "b": 121,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 120,
+      "a": 116,
+      "b": 122,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 121,
+      "a": 114,
+      "b": 123,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 122,
+      "a": 116,
+      "b": 124,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 123,
+      "a": 118,
+      "b": 125,
+      "kind": "door",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 124,
+      "a": 126,
+      "b": 127,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 125,
+      "a": 127,
+      "b": 128,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 126,
+      "a": 126,
+      "b": 129,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 127,
+      "a": 128,
+      "b": 130,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 128,
+      "a": 127,
+      "b": 131,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 129,
+      "a": 126,
+      "b": 132,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 130,
+      "a": 127,
+      "b": 133,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 131,
+      "a": 128,
+      "b": 134,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 132,
+      "a": 126,
+      "b": 135,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 133,
+      "a": 128,
+      "b": 136,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 134,
+      "a": 130,
+      "b": 137,
+      "kind": "door",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 135,
+      "a": 138,
+      "b": 139,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 136,
+      "a": 139,
+      "b": 140,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 137,
+      "a": 138,
+      "b": 141,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 138,
+      "a": 140,
+      "b": 142,
+      "kind": "door",
+      "width_m": 1.2,
+      "accessible": true
+    },
+    {
+      "id": 139,
+      "a": 139,
+      "b": 143,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 140,
+      "a": 138,
+      "b": 144,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 141,
+      "a": 139,
+      "b": 145,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 142,
+      "a": 140,
+      "b": 146,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 143,
+      "a": 138,
+      "b": 147,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 144,
+      "a": 140,
+      "b": 148,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 145,
+      "a": 142,
+      "b": 149,
+      "kind": "door",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 146,
+      "a": 104,
+      "b": 117,
+      "kind": "stair",
+      "width_m": 1.2,
+      "accessible": false,
+      "length_m": 8.0
+    },
+    {
+      "id": 147,
+      "a": 105,
+      "b": 118,
+      "kind": "stair",
+      "width_m": 1.2,
+      "accessible": false,
+      "length_m": 8.0
+    },
+    {
+      "id": 148,
+      "a": 106,
+      "b": 119,
+      "kind": "lift",
+      "width_m": 1.5,
+      "accessible": true,
+      "length_m": 3.0
+    },
+    {
+      "id": 149,
+      "a": 117,
+      "b": 129,
+      "kind": "stair",
+      "width_m": 1.2,
+      "accessible": false,
+      "length_m": 8.0
+    },
+    {
+      "id": 150,
+      "a": 118,
+      "b": 130,
+      "kind": "stair",
+      "width_m": 1.2,
+      "accessible": false,
+      "length_m": 8.0
+    },
+    {
+      "id": 151,
+      "a": 119,
+      "b": 131,
+      "kind": "lift",
+      "width_m": 1.5,
+      "accessible": true,
+      "length_m": 3.0
+    },
+    {
+      "id": 152,
+      "a": 129,
+      "b": 141,
+      "kind": "stair",
+      "width_m": 1.2,
+      "accessible": false,
+      "length_m": 8.0
+    },
+    {
+      "id": 153,
+      "a": 130,
+      "b": 142,
+      "kind": "stair",
+      "width_m": 1.2,
+      "accessible": false,
+      "length_m": 8.0
+    },
+    {
+      "id": 154,
+      "a": 131,
+      "b": 143,
+      "kind": "lift",
+      "width_m": 1.5,
+      "accessible": true,
+      "length_m": 3.0
+    }
+  ],
+  "access_points": [
+    {
+      "bssid": "b0:00:00:00:00:01",
+      "ssid": "BlockB-0-W",
+      "floor_id": 10,
+      "x": 8,
+      "y": 6,
+      "p_ref": -40.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:00:02",
+      "ssid": "BlockB-0-E",
+      "floor_id": 10,
+      "x": 22,
+      "y": 10,
+      "p_ref": -40.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:00:03",
+      "ssid": "BlockB-0-C",
+      "floor_id": 10,
+      "x": 15,
+      "y": 4,
+      "p_ref": -41.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:01:01",
+      "ssid": "BlockB-1-W",
+      "floor_id": 11,
+      "x": 8,
+      "y": 6,
+      "p_ref": -40.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:01:02",
+      "ssid": "BlockB-1-E",
+      "floor_id": 11,
+      "x": 22,
+      "y": 10,
+      "p_ref": -40.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:01:03",
+      "ssid": "BlockB-1-C",
+      "floor_id": 11,
+      "x": 15,
+      "y": 4,
+      "p_ref": -41.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:02:01",
+      "ssid": "BlockB-2-W",
+      "floor_id": 12,
+      "x": 8,
+      "y": 6,
+      "p_ref": -40.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:02:02",
+      "ssid": "BlockB-2-E",
+      "floor_id": 12,
+      "x": 22,
+      "y": 10,
+      "p_ref": -40.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:02:03",
+      "ssid": "BlockB-2-C",
+      "floor_id": 12,
+      "x": 15,
+      "y": 4,
+      "p_ref": -41.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:03:01",
+      "ssid": "BlockB-3-W",
+      "floor_id": 13,
+      "x": 8,
+      "y": 6,
+      "p_ref": -40.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:03:02",
+      "ssid": "BlockB-3-E",
+      "floor_id": 13,
+      "x": 22,
+      "y": 10,
+      "p_ref": -40.0,
+      "eta": 2.8
+    },
+    {
+      "bssid": "b0:00:00:00:03:03",
+      "ssid": "BlockB-3-C",
+      "floor_id": 13,
+      "x": 15,
+      "y": 4,
+      "p_ref": -41.0,
+      "eta": 2.8
+    }
+  ],
+  "sensors": [
+    {
+      "name": "Floor 0 corridor detector",
+      "type": "multi",
+      "node_key": "B0-C2"
+    },
+    {
+      "name": "Floor 1 corridor detector",
+      "type": "multi",
+      "node_key": "B1-C2"
+    },
+    {
+      "name": "Floor 2 corridor detector",
+      "type": "multi",
+      "node_key": "B2-C2"
+    },
+    {
+      "name": "Floor 3 corridor detector",
+      "type": "multi",
+      "node_key": "B3-C2"
+    },
+    {
+      "name": "Flat 102 kitchen detector",
+      "type": "multi",
+      "node_key": "B1-F02"
+    },
+    {
+      "name": "Fire alarm panel relay",
+      "type": "alarm_panel",
+      "node_key": "B0-LOBBY"
+    }
+  ],
+  "signage": [
+    {
+      "name": "Floor 0 lift lobby display",
+      "node_key": "B0-LIFT"
+    },
+    {
+      "name": "Floor 1 lift lobby display",
+      "node_key": "B1-LIFT"
+    },
+    {
+      "name": "Floor 2 lift lobby display",
+      "node_key": "B2-LIFT"
+    },
+    {
+      "name": "Floor 3 lift lobby display",
+      "node_key": "B3-LIFT"
+    }
+  ]
+}

@@ -1,0 +1,1050 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Smart Fire Evacuation Socket.IO events (server -> client)",
+  "events": {
+    "hazards": {
+      "additionalProperties": true,
+      "description": "`hazards` -> residents room, whenever hazards change (phone map + offline routing).",
+      "properties": {
+        "ts": {
+          "title": "Ts",
+          "type": "integer"
+        },
+        "building_id": {
+          "title": "Building Id",
+          "type": "integer"
+        },
+        "hazard_version": {
+          "title": "Hazard Version",
+          "type": "integer"
+        },
+        "hazards": {
+          "additionalProperties": {
+            "enum": [
+              "risk",
+              "smoke",
+              "fire"
+            ],
+            "type": "string"
+          },
+          "title": "Hazards",
+          "type": "object"
+        }
+      },
+      "required": [
+        "ts",
+        "building_id",
+        "hazard_version",
+        "hazards"
+      ],
+      "title": "HazardsUpdate",
+      "type": "object"
+    },
+    "position.fix": {
+      "$defs": {
+        "Gps": {
+          "properties": {
+            "lat": {
+              "title": "Lat",
+              "type": "number"
+            },
+            "lng": {
+              "title": "Lng",
+              "type": "number"
+            },
+            "accuracy_m": {
+              "title": "Accuracy M",
+              "type": "number"
+            }
+          },
+          "required": [
+            "lat",
+            "lng",
+            "accuracy_m"
+          ],
+          "title": "Gps",
+          "type": "object"
+        }
+      },
+      "additionalProperties": true,
+      "description": "`position.fix` -> device room.",
+      "properties": {
+        "ts": {
+          "title": "Ts",
+          "type": "integer"
+        },
+        "device_id": {
+          "title": "Device Id",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "wifi_pf",
+            "manual",
+            "gps",
+            "last_known",
+            "unknown"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "x": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "X"
+        },
+        "y": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Y"
+        },
+        "level": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Level"
+        },
+        "node_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Node Id"
+        },
+        "confidence": {
+          "title": "Confidence",
+          "type": "number"
+        },
+        "floor_confidence": {
+          "title": "Floor Confidence",
+          "type": "number"
+        },
+        "spread_m": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Spread M"
+        },
+        "outside": {
+          "title": "Outside",
+          "type": "boolean"
+        },
+        "near_assembly_node": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Near Assembly Node"
+        },
+        "needs_picker": {
+          "title": "Needs Picker",
+          "type": "boolean"
+        },
+        "confirm_floor": {
+          "title": "Confirm Floor",
+          "type": "boolean"
+        },
+        "gps": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Gps"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "ts",
+        "device_id",
+        "source",
+        "x",
+        "y",
+        "level",
+        "node_id",
+        "confidence",
+        "floor_confidence",
+        "spread_m",
+        "outside",
+        "near_assembly_node",
+        "needs_picker",
+        "confirm_floor",
+        "gps"
+      ],
+      "title": "PositionFix",
+      "type": "object"
+    },
+    "route.assigned": {
+      "$defs": {
+        "RouteGoal": {
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "integer"
+            },
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "type": {
+              "title": "Type",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "type"
+          ],
+          "title": "RouteGoal",
+          "type": "object"
+        },
+        "RouteNode": {
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "integer"
+            },
+            "key": {
+              "title": "Key",
+              "type": "string"
+            },
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "type": {
+              "title": "Type",
+              "type": "string"
+            },
+            "x": {
+              "title": "X",
+              "type": "number"
+            },
+            "y": {
+              "title": "Y",
+              "type": "number"
+            },
+            "level": {
+              "title": "Level",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "id",
+            "key",
+            "name",
+            "type",
+            "x",
+            "y",
+            "level"
+          ],
+          "title": "RouteNode",
+          "type": "object"
+        },
+        "RouteStep": {
+          "properties": {
+            "node_id": {
+              "title": "Node Id",
+              "type": "integer"
+            },
+            "kind": {
+              "enum": [
+                "start",
+                "go",
+                "stairs",
+                "exit",
+                "refuge",
+                "arrive"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "text": {
+              "title": "Text",
+              "type": "string"
+            },
+            "distance_m": {
+              "title": "Distance M",
+              "type": "number"
+            }
+          },
+          "required": [
+            "node_id",
+            "kind",
+            "text",
+            "distance_m"
+          ],
+          "title": "RouteStep",
+          "type": "object"
+        }
+      },
+      "additionalProperties": true,
+      "description": "`route.assigned` -> device room. reason: initial | hazard | congestion | deviation | current.",
+      "properties": {
+        "ts": {
+          "title": "Ts",
+          "type": "integer"
+        },
+        "device_id": {
+          "title": "Device Id",
+          "type": "string"
+        },
+        "incident_id": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Incident Id"
+        },
+        "version": {
+          "title": "Version",
+          "type": "integer"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "path": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Path",
+          "type": "array"
+        },
+        "nodes": {
+          "items": {
+            "$ref": "#/$defs/RouteNode"
+          },
+          "title": "Nodes",
+          "type": "array"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/RouteStep"
+          },
+          "title": "Steps",
+          "type": "array"
+        },
+        "goal": {
+          "$ref": "#/$defs/RouteGoal"
+        },
+        "goal_type": {
+          "enum": [
+            "exit",
+            "refuge"
+          ],
+          "title": "Goal Type",
+          "type": "string"
+        },
+        "remaining_m": {
+          "title": "Remaining M",
+          "type": "number"
+        },
+        "latency_ms": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Latency Ms"
+        }
+      },
+      "required": [
+        "ts",
+        "device_id",
+        "incident_id",
+        "version",
+        "reason",
+        "path",
+        "nodes",
+        "steps",
+        "goal",
+        "goal_type",
+        "remaining_m",
+        "latency_ms"
+      ],
+      "title": "RouteAssigned",
+      "type": "object"
+    },
+    "incident.updated": {
+      "$defs": {
+        "IncidentInfo": {
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "integer"
+            },
+            "building_id": {
+              "title": "Building Id",
+              "type": "integer"
+            },
+            "kind": {
+              "enum": [
+                "fire",
+                "drill"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "status": {
+              "enum": [
+                "detected",
+                "evacuating",
+                "all_clear",
+                "closed"
+              ],
+              "title": "Status",
+              "type": "string"
+            },
+            "is_simulation": {
+              "title": "Is Simulation",
+              "type": "boolean"
+            },
+            "trigger": {
+              "anyOf": [
+                {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Trigger"
+            },
+            "started_at": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Started At"
+            },
+            "ended_at": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Ended At"
+            }
+          },
+          "required": [
+            "id",
+            "building_id",
+            "kind",
+            "status",
+            "is_simulation",
+            "trigger",
+            "started_at",
+            "ended_at"
+          ],
+          "title": "IncidentInfo",
+          "type": "object"
+        }
+      },
+      "additionalProperties": true,
+      "description": "`incident.updated` -> building room and residents room.",
+      "properties": {
+        "ts": {
+          "title": "Ts",
+          "type": "integer"
+        },
+        "incident": {
+          "$ref": "#/$defs/IncidentInfo"
+        },
+        "building_id": {
+          "title": "Building Id",
+          "type": "integer"
+        },
+        "building_name": {
+          "title": "Building Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ts",
+        "incident",
+        "building_id",
+        "building_name"
+      ],
+      "title": "IncidentUpdated",
+      "type": "object"
+    },
+    "snapshot": {
+      "$defs": {
+        "ExitInfo": {
+          "properties": {
+            "node_id": {
+              "title": "Node Id",
+              "type": "integer"
+            },
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "assigned": {
+              "title": "Assigned",
+              "type": "integer"
+            },
+            "queue": {
+              "title": "Queue",
+              "type": "integer"
+            },
+            "flow_per_min": {
+              "title": "Flow Per Min",
+              "type": "number"
+            },
+            "capacity": {
+              "title": "Capacity",
+              "type": "integer"
+            },
+            "hazard": {
+              "title": "Hazard",
+              "type": "string"
+            }
+          },
+          "required": [
+            "node_id",
+            "name",
+            "assigned",
+            "queue",
+            "flow_per_min",
+            "capacity",
+            "hazard"
+          ],
+          "title": "ExitInfo",
+          "type": "object"
+        },
+        "Kpis": {
+          "properties": {
+            "active_devices": {
+              "title": "Active Devices",
+              "type": "integer"
+            },
+            "real_devices": {
+              "title": "Real Devices",
+              "type": "integer"
+            },
+            "virtual_occupants": {
+              "title": "Virtual Occupants",
+              "type": "integer"
+            },
+            "avg_path_length_m": {
+              "title": "Avg Path Length M",
+              "type": "number"
+            },
+            "avg_path_nodes": {
+              "title": "Avg Path Nodes",
+              "type": "number"
+            },
+            "congestion_rate": {
+              "title": "Congestion Rate",
+              "type": "number"
+            },
+            "fire_alerts": {
+              "title": "Fire Alerts",
+              "type": "integer"
+            },
+            "evacuated": {
+              "title": "Evacuated",
+              "type": "integer"
+            },
+            "unaccounted": {
+              "title": "Unaccounted",
+              "type": "integer"
+            },
+            "needs_help": {
+              "title": "Needs Help",
+              "type": "integer"
+            },
+            "trapped": {
+              "title": "Trapped",
+              "type": "integer"
+            },
+            "in_refuge": {
+              "title": "In Refuge",
+              "type": "integer"
+            },
+            "route_cache_hit_rate": {
+              "title": "Route Cache Hit Rate",
+              "type": "number"
+            }
+          },
+          "required": [
+            "active_devices",
+            "real_devices",
+            "virtual_occupants",
+            "avg_path_length_m",
+            "avg_path_nodes",
+            "congestion_rate",
+            "fire_alerts",
+            "evacuated",
+            "unaccounted",
+            "needs_help",
+            "trapped",
+            "in_refuge",
+            "route_cache_hit_rate"
+          ],
+          "title": "Kpis",
+          "type": "object"
+        },
+        "LiveDevice": {
+          "additionalProperties": true,
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "real",
+                "virtual"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "x": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X"
+            },
+            "y": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Y"
+            },
+            "level": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Level"
+            },
+            "node_id": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Node Id"
+            },
+            "source": {
+              "title": "Source",
+              "type": "string"
+            },
+            "confidence": {
+              "title": "Confidence",
+              "type": "number"
+            },
+            "status": {
+              "title": "Status",
+              "type": "string"
+            },
+            "stairs_ok": {
+              "title": "Stairs Ok",
+              "type": "boolean"
+            },
+            "route": {
+              "items": {
+                "type": "integer"
+              },
+              "title": "Route",
+              "type": "array"
+            },
+            "goal": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goal"
+            },
+            "goal_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goal Type"
+            },
+            "remaining_m": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Remaining M"
+            },
+            "progress": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Progress"
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "name",
+            "x",
+            "y",
+            "level",
+            "node_id",
+            "source",
+            "confidence",
+            "status",
+            "stairs_ok",
+            "route",
+            "goal",
+            "goal_type",
+            "remaining_m",
+            "progress"
+          ],
+          "title": "LiveDevice",
+          "type": "object"
+        },
+        "SnapshotIncident": {
+          "properties": {
+            "id": {
+              "title": "Id",
+              "type": "integer"
+            },
+            "kind": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kind"
+            },
+            "started_at": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Started At"
+            }
+          },
+          "required": [
+            "id",
+            "kind",
+            "started_at"
+          ],
+          "title": "SnapshotIncident",
+          "type": "object"
+        }
+      },
+      "additionalProperties": true,
+      "description": "`snapshot` -> building room, ~1 Hz (paper Fig. 3 dashboard).",
+      "properties": {
+        "ts": {
+          "title": "Ts",
+          "type": "integer"
+        },
+        "building_id": {
+          "title": "Building Id",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "live",
+            "simulation"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "graph_version": {
+          "title": "Graph Version",
+          "type": "integer"
+        },
+        "hazard_version": {
+          "title": "Hazard Version",
+          "type": "integer"
+        },
+        "incident": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SnapshotIncident"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kpis": {
+          "$ref": "#/$defs/Kpis"
+        },
+        "hazards": {
+          "additionalProperties": {
+            "enum": [
+              "risk",
+              "smoke",
+              "fire"
+            ],
+            "type": "string"
+          },
+          "title": "Hazards",
+          "type": "object"
+        },
+        "occupancy": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Occupancy",
+          "type": "object"
+        },
+        "congestion": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Congestion",
+          "type": "object"
+        },
+        "predicted_congestion": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Predicted Congestion",
+          "type": "object"
+        },
+        "exits": {
+          "items": {
+            "$ref": "#/$defs/ExitInfo"
+          },
+          "title": "Exits",
+          "type": "array"
+        },
+        "devices": {
+          "items": {
+            "$ref": "#/$defs/LiveDevice"
+          },
+          "title": "Devices",
+          "type": "array"
+        },
+        "unaccounted": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Unaccounted",
+          "type": "array"
+        },
+        "sos": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Sos",
+          "type": "array"
+        },
+        "sim": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sim"
+        },
+        "reroutes": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Reroutes",
+          "type": "object"
+        }
+      },
+      "required": [
+        "ts",
+        "building_id",
+        "name",
+        "mode",
+        "graph_version",
+        "hazard_version",
+        "incident",
+        "kpis",
+        "hazards",
+        "occupancy",
+        "congestion",
+        "predicted_congestion",
+        "exits",
+        "devices",
+        "unaccounted",
+        "sos",
+        "sim",
+        "reroutes"
+      ],
+      "title": "Snapshot",
+      "type": "object"
+    },
+    "signage.update": {
+      "additionalProperties": true,
+      "description": "`signage.update` -> signage room.",
+      "properties": {
+        "ts": {
+          "title": "Ts",
+          "type": "integer"
+        },
+        "signage_id": {
+          "title": "Signage Id",
+          "type": "integer"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "normal",
+            "evacuate",
+            "exit",
+            "danger"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "arrow_deg": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Arrow Deg"
+        },
+        "incident": {
+          "title": "Incident",
+          "type": "boolean"
+        },
+        "hazard_here": {
+          "title": "Hazard Here",
+          "type": "string"
+        },
+        "exits": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Exits",
+          "type": "array"
+        }
+      },
+      "required": [
+        "ts",
+        "signage_id",
+        "name",
+        "status",
+        "message",
+        "arrow_deg",
+        "incident",
+        "hazard_here",
+        "exits"
+      ],
+      "title": "SignageUpdate",
+      "type": "object"
+    }
+  }
+}

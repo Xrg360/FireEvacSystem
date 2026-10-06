@@ -1,0 +1,385 @@
+{
+  "building": {
+    "id": 1,
+    "name": "Block A (Villa)",
+    "floor_height_m": 3.0,
+    "graph_version": 1,
+    "footprint": [
+      [
+        9.962109,
+        76.4117909
+      ],
+      [
+        9.962109,
+        76.412028
+      ],
+      [
+        9.9619473,
+        76.412028
+      ],
+      [
+        9.9619473,
+        76.4117909
+      ]
+    ]
+  },
+  "floors": [
+    {
+      "id": 1,
+      "level": 0,
+      "name": "Ground Floor",
+      "width_m": 24,
+      "height_m": 16
+    }
+  ],
+  "nodes": [
+    {
+      "id": 1,
+      "key": "A-ENTRANCE",
+      "name": "Entrance",
+      "type": "exit",
+      "floor_id": 1,
+      "x": 2,
+      "y": 2,
+      "capacity": 8,
+      "exit_flow_per_min": 60,
+      "lat": 9.962082,
+      "lng": 76.4118182
+    },
+    {
+      "id": 2,
+      "key": "A-VERANDAH",
+      "name": "Verandah",
+      "type": "corridor",
+      "floor_id": 1,
+      "x": 7,
+      "y": 2,
+      "capacity": 10,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 3,
+      "key": "A-LIVING",
+      "name": "Living Room",
+      "type": "room",
+      "floor_id": 1,
+      "x": 13,
+      "y": 3,
+      "capacity": 12,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 4,
+      "key": "A-STAIRHALL",
+      "name": "Stair Hall",
+      "type": "corridor",
+      "floor_id": 1,
+      "x": 19,
+      "y": 3,
+      "capacity": 6,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 5,
+      "key": "A-TOILET2",
+      "name": "Toilet2",
+      "type": "room",
+      "floor_id": 1,
+      "x": 10,
+      "y": 5.5,
+      "capacity": 2,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 6,
+      "key": "A-DINING",
+      "name": "Dining Space",
+      "type": "room",
+      "floor_id": 1,
+      "x": 13,
+      "y": 8,
+      "capacity": 10,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 7,
+      "key": "A-KITCHEN",
+      "name": "Kitchen",
+      "type": "room",
+      "floor_id": 1,
+      "x": 19,
+      "y": 8,
+      "capacity": 4,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 8,
+      "key": "A-MASTER",
+      "name": "Master Bedroom",
+      "type": "room",
+      "floor_id": 1,
+      "x": 7,
+      "y": 8,
+      "capacity": 4,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 9,
+      "key": "A-TOILET",
+      "name": "Toilet",
+      "type": "room",
+      "floor_id": 1,
+      "x": 2,
+      "y": 8,
+      "capacity": 2,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 10,
+      "key": "A-BALCONY1",
+      "name": "Balcony1",
+      "type": "exit",
+      "floor_id": 1,
+      "x": 22,
+      "y": 13,
+      "capacity": 4,
+      "exit_flow_per_min": 20,
+      "lat": 9.9619832,
+      "lng": 76.4120007
+    },
+    {
+      "id": 11,
+      "key": "A-BEDROOM",
+      "name": "Bedroom",
+      "type": "room",
+      "floor_id": 1,
+      "x": 7,
+      "y": 13,
+      "capacity": 4,
+      "exit_flow_per_min": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": 12,
+      "key": "A-BALCONY2",
+      "name": "Balcony2",
+      "type": "exit",
+      "floor_id": 1,
+      "x": 2,
+      "y": 14,
+      "capacity": 4,
+      "exit_flow_per_min": 20,
+      "lat": 9.9619742,
+      "lng": 76.4118182
+    },
+    {
+      "id": 13,
+      "key": "A-ASSEMBLY",
+      "name": "Front Gate Assembly Point",
+      "type": "assembly",
+      "floor_id": 1,
+      "x": -6,
+      "y": 2,
+      "capacity": 200,
+      "exit_flow_per_min": null,
+      "lat": 9.962082,
+      "lng": 76.4117453
+    }
+  ],
+  "edges": [
+    {
+      "id": 1,
+      "a": 1,
+      "b": 2,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 2,
+      "a": 2,
+      "b": 3,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 3,
+      "a": 2,
+      "b": 8,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 4,
+      "a": 3,
+      "b": 4,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 5,
+      "a": 3,
+      "b": 5,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 6,
+      "a": 3,
+      "b": 6,
+      "kind": "corridor",
+      "width_m": 1.5,
+      "accessible": true
+    },
+    {
+      "id": 7,
+      "a": 6,
+      "b": 7,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 8,
+      "a": 6,
+      "b": 8,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 9,
+      "a": 6,
+      "b": 11,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 10,
+      "a": 8,
+      "b": 9,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 11,
+      "a": 7,
+      "b": 10,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 12,
+      "a": 4,
+      "b": 7,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 13,
+      "a": 11,
+      "b": 12,
+      "kind": "door",
+      "width_m": 1.0,
+      "accessible": true
+    },
+    {
+      "id": 14,
+      "a": 1,
+      "b": 13,
+      "kind": "outdoor",
+      "width_m": 1.5,
+      "accessible": true
+    }
+  ],
+  "access_points": [
+    {
+      "bssid": "a0:00:00:00:00:01",
+      "ssid": "BlockA-Hall",
+      "floor_id": 1,
+      "x": 5,
+      "y": 4,
+      "p_ref": -40.0,
+      "eta": 2.7
+    },
+    {
+      "bssid": "a0:00:00:00:00:02",
+      "ssid": "BlockA-Kitchen",
+      "floor_id": 1,
+      "x": 18,
+      "y": 5,
+      "p_ref": -40.0,
+      "eta": 2.7
+    },
+    {
+      "bssid": "a0:00:00:00:00:03",
+      "ssid": "BlockA-Bedrooms",
+      "floor_id": 1,
+      "x": 10,
+      "y": 13,
+      "p_ref": -40.0,
+      "eta": 2.7
+    },
+    {
+      "bssid": "a0:00:00:00:00:04",
+      "ssid": "BlockA-Dining",
+      "floor_id": 1,
+      "x": 15,
+      "y": 10,
+      "p_ref": -42.0,
+      "eta": 2.9
+    }
+  ],
+  "sensors": [
+    {
+      "name": "Kitchen smoke detector",
+      "type": "multi",
+      "node_key": "A-KITCHEN"
+    },
+    {
+      "name": "Living room smoke detector",
+      "type": "multi",
+      "node_key": "A-LIVING"
+    },
+    {
+      "name": "Master bedroom smoke detector",
+      "type": "multi",
+      "node_key": "A-MASTER"
+    }
+  ],
+  "signage": [
+    {
+      "name": "Verandah display",
+      "node_key": "A-VERANDAH"
+    },
+    {
+      "name": "Dining display",
+      "node_key": "A-DINING"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# The IEEE paper PDF is a licensed copy; it must not be redistributed in a public repository.
+# Cite it instead: DOI 10.1109/ICSCC66177.2025.11233739
+*.pdf
+
+# Local tooling / OS
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

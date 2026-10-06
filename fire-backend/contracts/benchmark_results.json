@@ -1,0 +1,126 @@
+[
+  {
+    "building": "block_b_tower",
+    "occupants": 150,
+    "fire_start": [
+      "B1-F02"
+    ],
+    "seeds": 20,
+    "predictor": "none",
+    "table": {
+      "avg_evac_time_s": {
+        "static": 55.56,
+        "dynamic": 47.78
+      },
+      "p90_evac_time_s": {
+        "static": 104.06,
+        "dynamic": 78.66
+      },
+      "max_evac_time_s": {
+        "static": 126.33,
+        "dynamic": 105.28
+      },
+      "avg_exit_queue": {
+        "static": 10.27,
+        "dynamic": 5.47
+      },
+      "peak_exit_queue": {
+        "static": 13.95,
+        "dynamic": 8.65
+      },
+      "trapped": {
+        "static": 1.15,
+        "dynamic": 0.8
+      },
+      "in_refuge": {
+        "static": 5.1,
+        "dynamic": 5.1
+      }
+    },
+    "exit_queue_reduction_pct": 46.7,
+    "evac_time_reduction_pct": 14.0,
+    "replan_latency_ms_200_people": 10.9,
+    "positioning": {
+      "trilateration": {
+        "mean_m": 6.35,
+        "median_m": 6.69,
+        "p90_m": 10.83
+      },
+      "fingerprint_knn": {
+        "mean_m": 3.85,
+        "median_m": 2.61,
+        "p90_m": 7.91
+      },
+      "particle_filter_fused": {
+        "mean_m": 2.39,
+        "median_m": 1.95,
+        "p90_m": 5.03
+      },
+      "pf_floor_accuracy": 1.0,
+      "test_points": 150,
+      "note": "Synthetic scans: log-distance path loss, 4 dB noise, 15 dB per floor. Real buildings are noisier."
+    }
+  },
+  {
+    "building": "block_a_villa",
+    "occupants": 30,
+    "fire_start": [
+      "A-KITCHEN"
+    ],
+    "seeds": 20,
+    "predictor": "none",
+    "table": {
+      "avg_evac_time_s": {
+        "static": 21.66,
+        "dynamic": 21.45
+      },
+      "p90_evac_time_s": {
+        "static": 32.54,
+        "dynamic": 31.67
+      },
+      "max_evac_time_s": {
+        "static": 38.38,
+        "dynamic": 37.6
+      },
+      "avg_exit_queue": {
+        "static": 0.84,
+        "dynamic": 0.67
+      },
+      "peak_exit_queue": {
+        "static": 3,
+        "dynamic": 3
+      },
+      "trapped": {
+        "static": 0.8,
+        "dynamic": 0.8
+      },
+      "in_refuge": {
+        "static": 0,
+        "dynamic": 0
+      }
+    },
+    "exit_queue_reduction_pct": 20.2,
+    "evac_time_reduction_pct": 1.0,
+    "replan_latency_ms_200_people": 3.7,
+    "positioning": {
+      "trilateration": {
+        "mean_m": 4.7,
+        "median_m": 3.82,
+        "p90_m": 9.75
+      },
+      "fingerprint_knn": {
+        "mean_m": 2.83,
+        "median_m": 1.54,
+        "p90_m": 6.01
+      },
+      "particle_filter_fused": {
+        "mean_m": 2.25,
+        "median_m": 1.81,
+        "p90_m": 3.78
+      },
+      "pf_floor_accuracy": 1.0,
+      "test_points": 150,
+      "note": "Synthetic scans: log-distance path loss, 4 dB noise, 15 dB per floor. Real buildings are noisier."
+    }
+  }
+]

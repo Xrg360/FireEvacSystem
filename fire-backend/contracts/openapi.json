@@ -1,0 +1,3664 @@
+{
+  "info": {
+    "title": "Smart Fire Evacuation API",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "auth"
+    },
+    {
+      "name": "buildings"
+    },
+    {
+      "name": "positioning"
+    },
+    {
+      "name": "sensors"
+    },
+    {
+      "name": "incidents"
+    },
+    {
+      "name": "simulation"
+    },
+    {
+      "name": "signage"
+    }
+  ],
+  "paths": {
+    "/api/sos": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Need help / trapped. Uses the device's latest position",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SosIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/staff": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Create a rescuer / admin / surveyor account (approved immediately)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "tags": [
+          "system"
+        ],
+        "summary": "Health"
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Me"
+      }
+    },
+    "/api/residents": {
+      "get": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Residents of the admin's society (filter with ?status=pending)"
+      }
+    },
+    "/api/buildings": {
+      "get": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "List Buildings"
+      },
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "Create Building",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildingIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/me/status": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Resident reports evacuating / safe / needs help",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MyStatusIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Login. Mobile apps pass `device` to register this install and get a device-bound token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/join/{code}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Society info for the signup screen (buildings, floors, rooms)"
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Logout",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/devices/fcm": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Register this install's Firebase Cloud Messaging token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FcmIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/me/incident": {
+      "get": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "The active incident for the resident's building, if any"
+      }
+    },
+    "/api/auth/refresh": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Refresh",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Resident signup with the society join code; account starts as pending",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/positioning/me": {
+      "get": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "Latest fix and route for this device (used after reconnecting)"
+      }
+    },
+    "/api/me/acknowledge": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Resident opened the alarm (measures alert-to-acknowledge time)"
+      }
+    },
+    "/api/positioning/gps": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "Gps",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GpsIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/positioning/scan": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "Wi-Fi scan (BSSID + RSSI). Prefer the socket `scan` event; this is the fallback",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScanIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/positioning/manual": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "'Where are you?' picker result - a strong observation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManualIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/benchmark/{job_id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "simulation"
+        ],
+        "summary": "Benchmark Result"
+      }
+    },
+    "/api/residents/{user_id}": {
+      "patch": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Patch User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPatch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sensors/{sensor_id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sensor_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "sensors"
+        ],
+        "summary": "Delete Sensor"
+      }
+    },
+    "/api/signage/display/{token}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "signage"
+        ],
+        "summary": "Current state for a display (token in the URL; no login)"
+      }
+    },
+    "/api/sos/{sos_id}/resolve": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sos_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Resolve Sos"
+      }
+    },
+    "/api/signage/{signage_id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "signage_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "signage"
+        ],
+        "summary": "Delete Signage"
+      }
+    },
+    "/api/positioning/floor-confirm": {
+      "post": {
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "Floor Confirm",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FloorConfirmIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/floors/{floor_id}/plan": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "floor_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "Upload a floor-plan image (multipart field `file`); optional form field scale_px_per_m"
+      }
+    },
+    "/api/buildings/{building_id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "Get Building"
+      },
+      "patch": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "Rename, switch Live/Simulation mode, set footprint or routing/positioning settings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildingPatch"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "Delete Building"
+      }
+    },
+    "/api/incidents/{incident_id}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "incident_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Get Incident"
+      }
+    },
+    "/api/residents/{user_id}/reject": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Reject"
+      }
+    },
+    "/api/residents/{user_id}/approve": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "auth"
+        ],
+        "summary": "Approve"
+      }
+    },
+    "/api/buildings/{building_id}/sos": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "List Sos"
+      }
+    },
+    "/api/buildings/{building_id}/live": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "Latest live snapshot (same payload as the `snapshot` socket event)"
+      }
+    },
+    "/api/sensors/{sensor_id}/readings": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sensor_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "sensors"
+        ],
+        "summary": "Readings"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sensor_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "sensors"
+        ],
+        "summary": "Sensor ingest (ESP32 etc.). Authenticate with header `X-Sensor-Key`",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadingIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buildings/{building_id}/graph": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "Floors, nodes, edges and access points (fixture format). Apps cache this for offline routing"
+      },
+      "put": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "Publish an edited graph; bumps graph_version. 422 with problems if invalid",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GraphIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buildings/{building_id}/survey": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "Record one labelled Wi-Fi scan taken at a known node",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SurveyIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sensors/{sensor_id}/rotate-key": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sensor_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "sensors"
+        ],
+        "summary": "Rotate Key"
+      }
+    },
+    "/api/incidents/{incident_id}/status": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "incident_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Declare all-clear or close an incident (computes post-incident metrics)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncidentStatusIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/incidents/{incident_id}/events": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "incident_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Event log for replay. Filters: ?types=snapshot,route.assigned&after_id=0&limit=2000"
+      }
+    },
+    "/api/buildings/{building_id}/sensors": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "sensors"
+        ],
+        "summary": "List Sensors"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "sensors"
+        ],
+        "summary": "Register a sensor. The API key is shown only once",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SensorIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buildings/{building_id}/hazards": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "sensors"
+        ],
+        "summary": "Get Hazards"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "sensors"
+        ],
+        "summary": "Rescuer marks / clears a hazard manually (overrides simulation, opens an incident for fire)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HazardIn"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "sensors"
+        ],
+        "summary": "Clear All Hazards"
+      }
+    },
+    "/api/buildings/{building_id}/signage": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "signage"
+        ],
+        "summary": "List Signage"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "signage"
+        ],
+        "summary": "Create Signage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignageIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buildings/{building_id}/incidents": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "List Incidents"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Start a fire incident or a drill manually; residents are alerted",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncidentIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buildings/{building_id}/benchmark": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "simulation"
+        ],
+        "summary": "Run static-plan vs dynamic-A* comparison (paper Table I) in the background",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BenchmarkIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/incidents/{incident_id}/export.csv": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "incident_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Export Csv"
+      }
+    },
+    "/api/buildings/{building_id}/simulation": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "simulation"
+        ],
+        "summary": "Control the simulator: start, spawn, ignite, extinguish, pause, resume, speed, spread, alarm, reset, stop",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buildings/{building_id}/graph/validate": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "buildings"
+        ],
+        "summary": "Validate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GraphIn"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buildings/{building_id}/survey/coverage": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "Coverage"
+      }
+    },
+    "/api/buildings/{building_id}/survey/calibrate": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "Fit P_ref and path-loss exponent per router (eq. 1) from survey data and evaluate the fingerprint model"
+      }
+    },
+    "/api/buildings/{building_id}/survey/{node_id}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "node_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "Clear Node Samples"
+      }
+    },
+    "/api/buildings/{building_id}/access-points/register": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "building_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Validation error"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Not found"
+          }
+        },
+        "tags": [
+          "positioning"
+        ],
+        "summary": "Register a router position (stand next to it and pick the node, or give x/y)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterApIn"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "openapi": "3.1.0",
+  "components": {
+    "schemas": {
+      "ValidationError": {
+        "properties": {
+          "detail": {
+            "type": "object",
+            "properties": {
+              "<location>": {
+                "type": "object",
+                "properties": {
+                  "<field_name>": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SosIn": {
+        "properties": {
+          "kind": {
+            "default": "help",
+            "pattern": "^(help|trapped|medical)$",
+            "title": "Kind",
+            "type": "string"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Note"
+          }
+        },
+        "title": "SosIn",
+        "type": "object"
+      },
+      "StaffIn.Role": {
+        "enum": [
+          "resident",
+          "surveyor",
+          "rescuer",
+          "society_admin"
+        ],
+        "title": "Role",
+        "type": "string"
+      },
+      "StaffIn": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "title": "Email",
+            "type": "string"
+          },
+          "password": {
+            "minLength": 8,
+            "title": "Password",
+            "type": "string"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Phone"
+          },
+          "role": {
+            "$ref": "#/components/schemas/StaffIn.Role",
+            "default": "rescuer"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "title": "StaffIn",
+        "type": "object"
+      },
+      "BuildingIn": {
+        "properties": {
+          "name": {
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "floor_height_m": {
+            "default": 3.0,
+            "title": "Floor Height M",
+            "type": "number"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "BuildingIn",
+        "type": "object"
+      },
+      "MyStatusIn.ParticipantStatus": {
+        "enum": [
+          "unknown",
+          "evacuating",
+          "safe",
+          "needs_help"
+        ],
+        "title": "ParticipantStatus",
+        "type": "string"
+      },
+      "MyStatusIn": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/MyStatusIn.ParticipantStatus"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "MyStatusIn",
+        "type": "object"
+      },
+      "LoginIn.DeviceIn": {
+        "properties": {
+          "platform": {
+            "default": "android",
+            "title": "Platform",
+            "type": "string"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Model"
+          },
+          "app_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "App Version"
+          },
+          "device_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Reuse a device id issued earlier to this install",
+            "title": "Device Id"
+          }
+        },
+        "title": "DeviceIn",
+        "type": "object"
+      },
+      "LoginIn": {
+        "properties": {
+          "email": {
+            "maxLength": 255,
+            "minLength": 3,
+            "title": "Email",
+            "type": "string"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string"
+          },
+          "device": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LoginIn.DeviceIn"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "LoginIn",
+        "type": "object"
+      },
+      "HTTPError": {
+        "properties": {
+          "detail": {
+            "type": "object"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "RefreshIn": {
+        "properties": {
+          "refresh_token": {
+            "title": "Refresh Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "refresh_token"
+        ],
+        "title": "RefreshIn",
+        "type": "object"
+      },
+      "FcmIn": {
+        "properties": {
+          "fcm_token": {
+            "minLength": 10,
+            "title": "Fcm Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "fcm_token"
+        ],
+        "title": "FcmIn",
+        "type": "object"
+      },
+      "RegisterIn": {
+        "properties": {
+          "join_code": {
+            "maxLength": 16,
+            "minLength": 4,
+            "title": "Join Code",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 120,
+            "minLength": 2,
+            "title": "Name",
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "title": "Email",
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Password",
+            "type": "string"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "maxLength": 32,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Phone"
+          },
+          "building_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Building Id"
+          },
+          "flat": {
+            "anyOf": [
+              {
+                "maxLength": 32,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Flat"
+          },
+          "home_node_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Home Node Id"
+          },
+          "stairs_ok": {
+            "default": true,
+            "title": "Stairs Ok",
+            "type": "boolean"
+          },
+          "mobility_notes": {
+            "anyOf": [
+              {
+                "maxLength": 255,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Mobility Notes"
+          }
+        },
+        "required": [
+          "join_code",
+          "name",
+          "email",
+          "password"
+        ],
+        "title": "RegisterIn",
+        "type": "object"
+      },
+      "GpsIn": {
+        "properties": {
+          "lat": {
+            "maximum": 90,
+            "minimum": -90,
+            "title": "Lat",
+            "type": "number"
+          },
+          "lng": {
+            "maximum": 180,
+            "minimum": -180,
+            "title": "Lng",
+            "type": "number"
+          },
+          "accuracy_m": {
+            "maximum": 5000,
+            "minimum": 0,
+            "title": "Accuracy M",
+            "type": "number"
+          }
+        },
+        "required": [
+          "lat",
+          "lng",
+          "accuracy_m"
+        ],
+        "title": "GpsIn",
+        "type": "object"
+      },
+      "ScanIn.Reading": {
+        "properties": {
+          "bssid": {
+            "pattern": "^[0-9A-Fa-f]{2}(:[0-9A-Fa-f]{2}){5}$",
+            "title": "Bssid",
+            "type": "string"
+          },
+          "rssi": {
+            "maximum": 0,
+            "minimum": -120,
+            "title": "Rssi",
+            "type": "number"
+          },
+          "ssid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ssid"
+          },
+          "frequency": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Frequency"
+          }
+        },
+        "required": [
+          "bssid",
+          "rssi"
+        ],
+        "title": "Reading",
+        "type": "object"
+      },
+      "ScanIn": {
+        "properties": {
+          "readings": {
+            "items": {
+              "$ref": "#/components/schemas/ScanIn.Reading"
+            },
+            "maxItems": 200,
+            "title": "Readings",
+            "type": "array"
+          },
+          "ts": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ts"
+          }
+        },
+        "required": [
+          "readings"
+        ],
+        "title": "ScanIn",
+        "type": "object"
+      },
+      "ManualIn": {
+        "properties": {
+          "node_id": {
+            "title": "Node Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "node_id"
+        ],
+        "title": "ManualIn",
+        "type": "object"
+      },
+      "UserPatch.Role": {
+        "enum": [
+          "resident",
+          "surveyor",
+          "rescuer",
+          "society_admin"
+        ],
+        "title": "Role",
+        "type": "string"
+      },
+      "UserPatch": {
+        "properties": {
+          "role": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/UserPatch.Role"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "building_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Building Id"
+          },
+          "flat": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Flat"
+          },
+          "stairs_ok": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Stairs Ok"
+          },
+          "mobility_notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Mobility Notes"
+          }
+        },
+        "title": "UserPatch",
+        "type": "object"
+      },
+      "FloorConfirmIn": {
+        "properties": {
+          "level": {
+            "title": "Level",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "level"
+        ],
+        "title": "FloorConfirmIn",
+        "type": "object"
+      },
+      "BuildingPatch.BuildingMode": {
+        "enum": [
+          "live",
+          "simulation"
+        ],
+        "title": "BuildingMode",
+        "type": "string"
+      },
+      "BuildingPatch": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Name"
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BuildingPatch.BuildingMode"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null
+          },
+          "floor_height_m": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Floor Height M"
+          },
+          "footprint": {
+            "anyOf": [
+              {
+                "items": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Footprint"
+          },
+          "settings": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Settings"
+          }
+        },
+        "title": "BuildingPatch",
+        "type": "object"
+      },
+      "ReadingIn": {
+        "properties": {
+          "smoke": {
+            "anyOf": [
+              {
+                "minimum": 0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Smoke"
+          },
+          "temperature_c": {
+            "anyOf": [
+              {
+                "maximum": 1500,
+                "minimum": -50,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Temperature C"
+          },
+          "flame": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Flame"
+          },
+          "alarm": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Alarm"
+          }
+        },
+        "title": "ReadingIn",
+        "type": "object"
+      },
+      "GraphIn": {
+        "properties": {
+          "building": {
+            "additionalProperties": true,
+            "title": "Building",
+            "type": "object"
+          },
+          "floors": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Floors",
+            "type": "array"
+          },
+          "nodes": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Nodes",
+            "type": "array"
+          },
+          "edges": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Edges",
+            "type": "array"
+          },
+          "access_points": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Access Points",
+            "type": "array"
+          }
+        },
+        "required": [
+          "floors",
+          "nodes",
+          "edges"
+        ],
+        "title": "GraphIn",
+        "type": "object"
+      },
+      "SurveyIn.Reading": {
+        "properties": {
+          "bssid": {
+            "pattern": "^[0-9A-Fa-f]{2}(:[0-9A-Fa-f]{2}){5}$",
+            "title": "Bssid",
+            "type": "string"
+          },
+          "rssi": {
+            "maximum": 0,
+            "minimum": -120,
+            "title": "Rssi",
+            "type": "number"
+          },
+          "ssid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ssid"
+          },
+          "frequency": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Frequency"
+          }
+        },
+        "required": [
+          "bssid",
+          "rssi"
+        ],
+        "title": "Reading",
+        "type": "object"
+      },
+      "SurveyIn": {
+        "properties": {
+          "node_id": {
+            "title": "Node Id",
+            "type": "integer"
+          },
+          "readings": {
+            "items": {
+              "$ref": "#/components/schemas/SurveyIn.Reading"
+            },
+            "maxItems": 200,
+            "minItems": 1,
+            "title": "Readings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "node_id",
+          "readings"
+        ],
+        "title": "SurveyIn",
+        "type": "object"
+      },
+      "IncidentStatusIn.IncidentStatus": {
+        "enum": [
+          "detected",
+          "evacuating",
+          "all_clear",
+          "closed"
+        ],
+        "title": "IncidentStatus",
+        "type": "string"
+      },
+      "IncidentStatusIn": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/IncidentStatusIn.IncidentStatus"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "IncidentStatusIn",
+        "type": "object"
+      },
+      "SensorIn.SensorType": {
+        "enum": [
+          "smoke",
+          "temperature",
+          "flame",
+          "multi",
+          "alarm_panel"
+        ],
+        "title": "SensorType",
+        "type": "string"
+      },
+      "SensorIn": {
+        "properties": {
+          "name": {
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SensorIn.SensorType",
+            "default": "multi"
+          },
+          "node_id": {
+            "title": "Node Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "node_id"
+        ],
+        "title": "SensorIn",
+        "type": "object"
+      },
+      "HazardIn.HazardLevel": {
+        "enum": [
+          "none",
+          "risk",
+          "smoke",
+          "fire"
+        ],
+        "title": "HazardLevel",
+        "type": "string"
+      },
+      "HazardIn": {
+        "properties": {
+          "node_id": {
+            "title": "Node Id",
+            "type": "integer"
+          },
+          "level": {
+            "$ref": "#/components/schemas/HazardIn.HazardLevel"
+          }
+        },
+        "required": [
+          "node_id",
+          "level"
+        ],
+        "title": "HazardIn",
+        "type": "object"
+      },
+      "SignageIn": {
+        "properties": {
+          "name": {
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "node_id": {
+            "title": "Node Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "node_id"
+        ],
+        "title": "SignageIn",
+        "type": "object"
+      },
+      "IncidentIn": {
+        "properties": {
+          "kind": {
+            "default": "drill",
+            "pattern": "^(fire|drill)$",
+            "title": "Kind",
+            "type": "string"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Note"
+          }
+        },
+        "title": "IncidentIn",
+        "type": "object"
+      },
+      "BenchmarkIn": {
+        "properties": {
+          "seeds": {
+            "default": 5,
+            "maximum": 30,
+            "minimum": 1,
+            "title": "Seeds",
+            "type": "integer"
+          },
+          "occupants": {
+            "anyOf": [
+              {
+                "maximum": 600,
+                "minimum": 1,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Occupants"
+          },
+          "fire_node_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Fire Node Ids",
+            "type": "array"
+          },
+          "spread_per_min": {
+            "anyOf": [
+              {
+                "maximum": 10,
+                "minimum": 0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Spread Per Min"
+          },
+          "use_predictor": {
+            "default": false,
+            "title": "Use Predictor",
+            "type": "boolean"
+          }
+        },
+        "title": "BenchmarkIn",
+        "type": "object"
+      },
+      "SimIn": {
+        "properties": {
+          "action": {
+            "title": "Action",
+            "type": "string"
+          },
+          "occupants": {
+            "anyOf": [
+              {
+                "maximum": 1000,
+                "minimum": 0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Occupants"
+          },
+          "phone_share": {
+            "anyOf": [
+              {
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Phone Share"
+          },
+          "mobility_share": {
+            "anyOf": [
+              {
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Mobility Share"
+          },
+          "node_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Node Id"
+          },
+          "speed": {
+            "anyOf": [
+              {
+                "maximum": 10,
+                "minimum": 0.25,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Speed"
+          },
+          "spread_per_min": {
+            "anyOf": [
+              {
+                "maximum": 10,
+                "minimum": 0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Spread Per Min"
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Seed"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "title": "SimIn",
+        "type": "object"
+      },
+      "RegisterApIn": {
+        "properties": {
+          "bssid": {
+            "pattern": "^[0-9A-Fa-f]{2}(:[0-9A-Fa-f]{2}){5}$",
+            "title": "Bssid",
+            "type": "string"
+          },
+          "ssid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Ssid"
+          },
+          "node_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Stand next to the router at this node",
+            "title": "Node Id"
+          },
+          "floor_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Floor Id"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Y"
+          }
+        },
+        "required": [
+          "bssid"
+        ],
+        "title": "RegisterApIn",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

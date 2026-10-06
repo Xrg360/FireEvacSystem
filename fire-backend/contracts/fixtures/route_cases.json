@@ -1,0 +1,156 @@
+[
+  {
+    "fixture": "block_a_villa",
+    "start": "A-TOILET2",
+    "fire": [
+      "A-KITCHEN",
+      "A-TOILET"
+    ],
+    "stairs_ok": true,
+    "expected_path": [
+      "A-TOILET2",
+      "A-LIVING",
+      "A-VERANDAH",
+      "A-ENTRANCE"
+    ],
+    "expected_cost": 24.975775,
+    "expected_goal_type": "exit"
+  },
+  {
+    "fixture": "block_a_villa",
+    "start": "A-MASTER",
+    "fire": [],
+    "stairs_ok": true,
+    "expected_path": [
+      "A-MASTER",
+      "A-VERANDAH",
+      "A-ENTRANCE"
+    ],
+    "expected_cost": 11.0,
+    "expected_goal_type": "exit"
+  },
+  {
+    "fixture": "block_a_villa",
+    "start": "A-LIVING",
+    "fire": [
+      "A-VERANDAH"
+    ],
+    "stairs_ok": true,
+    "expected_path": [
+      "A-LIVING",
+      "A-DINING",
+      "A-KITCHEN",
+      "A-BALCONY1"
+    ],
+    "expected_cost": 21.830952,
+    "expected_goal_type": "exit"
+  },
+  {
+    "fixture": "block_a_villa",
+    "start": "A-BEDROOM",
+    "fire": [
+      "A-DINING",
+      "A-BALCONY2"
+    ],
+    "stairs_ok": true,
+    "expected_path": null,
+    "expected_cost": null,
+    "expected_goal_type": null
+  },
+  {
+    "fixture": "block_b_tower",
+    "start": "B3-F02",
+    "fire": [],
+    "stairs_ok": true,
+    "expected_path": [
+      "B3-F02",
+      "B3-C2",
+      "B3-C1",
+      "B3-SW",
+      "B2-SW",
+      "B1-SW",
+      "B0-SW",
+      "B0-EXIT-WEST"
+    ],
+    "expected_cost": 44.0,
+    "expected_goal_type": "exit"
+  },
+  {
+    "fixture": "block_b_tower",
+    "start": "B3-F02",
+    "fire": [
+      "B2-SW"
+    ],
+    "stairs_ok": true,
+    "expected_path": [
+      "B3-F02",
+      "B3-C2",
+      "B3-C3",
+      "B3-SE",
+      "B2-SE",
+      "B1-SE",
+      "B0-SE",
+      "B0-EXIT-EAST"
+    ],
+    "expected_cost": 44.0,
+    "expected_goal_type": "exit"
+  },
+  {
+    "fixture": "block_b_tower",
+    "start": "B2-F04",
+    "fire": [],
+    "stairs_ok": false,
+    "expected_path": [
+      "B2-F04",
+      "B2-C1",
+      "B2-C2",
+      "B2-C3",
+      "B2-SE",
+      "B2-REFUGE"
+    ],
+    "expected_cost": 32.0,
+    "expected_goal_type": "refuge"
+  },
+  {
+    "fixture": "block_b_tower",
+    "start": "B1-F05",
+    "fire": [
+      "B1-C3"
+    ],
+    "stairs_ok": true,
+    "expected_path": null,
+    "expected_cost": null,
+    "expected_goal_type": null
+  },
+  {
+    "fixture": "block_b_tower",
+    "start": "B0-LOBBY",
+    "fire": [
+      "B0-C2"
+    ],
+    "stairs_ok": false,
+    "expected_path": null,
+    "expected_cost": null,
+    "expected_goal_type": null
+  },
+  {
+    "fixture": "block_b_tower",
+    "start": "B3-LIFT",
+    "fire": [
+      "B1-F02"
+    ],
+    "stairs_ok": true,
+    "expected_path": [
+      "B3-LIFT",
+      "B3-C2",
+      "B3-C1",
+      "B3-SW",
+      "B2-SW",
+      "B1-SW",
+      "B0-SW",
+      "B0-EXIT-WEST"
+    ],
+    "expected_cost": 42.0,
+    "expected_goal_type": "exit"
+  }
+]

@@ -1,0 +1,105 @@
+# Whole system on one laptop:  docker compose up --build
+#   API + Socket.IO  http://<laptop-ip>:5000   (phones on the same Wi-Fi)
+#   Dashboard        http://localhost:3000
+# Optional MQTT sensor broker:  docker compose --profile mqtt up --build
+# First run:  docker compose exec api python -m scripts.seed
+
+x-backend: &backend
+  build: .
+  restart: unless-stopped
+  env_file:
+    - path: .env
+      required: false
+  environment: &backend-env
+    DATABASE_URL: postgresql+psycopg://fire:fire@db:5432/fire
+    REDIS_URL: redis://redis:6379/0
+    ENGINE_INPROCESS: "0"
+    JWT_SECRET: ${JWT_SECRET:-change-me-in-.env-to-a-long-random-string}
+    CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+    FIREBASE_CREDENTIALS: ${FIREBASE_CREDENTIALS:-}
+    MQTT_HOST: mosquitto
+  volumes:
+    - uploads:/srv/uploads
+    - ./ml_models:/srv/ml_models
+    - ./secrets:/srv/secrets:ro
+  depends_on:
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_started
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: fire
+      POSTGRES_PASSWORD: fire
+      POSTGRES_DB: fire
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fire"]
+      interval: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  migrate:
+    <<: *backend
+    restart: "no"
+    command: ["alembic", "upgrade", "head"]
+
+  api:
+    <<: *backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+
+  engine:
+    <<: *backend
+    command: ["python", "-m", "app.engine"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+
+  dashboard:
+    build:
+      context: ../dashboard-final
+      args:
+        NEXT_PUBLIC_API_URL: ${PUBLIC_API_URL:-http://localhost:5000}
+    restart: unless-stopped
+    environment:
+      API_URL: http://api:5000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    profiles: ["mqtt"]
+    restart: unless-stopped
+    command: ["mosquitto", "-c", "/mosquitto-no-auth.conf"]
+    ports:
+      - "1883:1883"
+
+  mqtt-ingest:
+    <<: *backend
+    profiles: ["mqtt"]
+    command: ["python", "-m", "app.sensors.mqtt_ingest"]
+    depends_on:
+      - mosquitto
+      - api
+
+volumes:
+  pgdata:
+  uploads:
