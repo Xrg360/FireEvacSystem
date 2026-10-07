@@ -30,7 +30,7 @@ This system turns a housing society into a **live evacuation network**:
 5. **Command.** Rescuers see everyone's position, the hazards, exit loads, SOS calls and who is still unaccounted for. **Digital signs** in corridors point to the safest exit from where they hang.
 6. **Learn.** Every incident is logged for **replay**, metrics and CSV export. A built-in simulator reproduces the paper's static-plan vs dynamic-routing comparison.
 
-This repository is the revamped implementation of our IEEE ICSCC 2025 paper (details under [Paper](#paper)).
+This repository is the implementation of our IEEE ICSCC 2025 paper (details under [Paper](#paper)).
 
 > ⚠️ **Not a certified life-safety system.** It adds to, and does not replace, fire alarms, fire exits and the instructions of trained responders.
 
